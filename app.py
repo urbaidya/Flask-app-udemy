@@ -14,9 +14,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONA'] = False  ##
 app.secret_key='umesh'
 api=Api(app)
 
-@app.before_first_request
-def create_tables():
-	db.create_all()
 
 jwt=JWT(app, authenticate, identity)  ##this creates a new endpoint '/auth'
 
