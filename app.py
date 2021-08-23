@@ -1,3 +1,4 @@
+import os
 from db import db
 from flask import Flask
 from flask_restful import Api, reqparse
@@ -9,7 +10,7 @@ from resources.store import Store, StoreList
 from security import authenticate, identity
 
 app=Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///data.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONA'] = False  ## 
 app.secret_key='umesh'
 api=Api(app)
