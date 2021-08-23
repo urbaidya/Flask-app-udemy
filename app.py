@@ -10,7 +10,8 @@ from resources.store import Store, StoreList
 from security import authenticate, identity
 
 app=Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///data.db')
+db_url = os.environ.get('DATABASE_URL', 'sqlite:///data.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = db_url.replace("://", "ql://", 1)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONA'] = False  ## 
 app.secret_key='umesh'
 api=Api(app)
